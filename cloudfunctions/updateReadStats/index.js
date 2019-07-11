@@ -49,7 +49,9 @@ exports.main = async (event, context) => {
     num += lvl_progress[n]
   }
 
-  if (num >= 30) {
+  const max_lvl = 14
+  
+  if (num >= 30 && eng_lvl < max_lvl) {
     eng_lvl += 1
 
     for (let n in lvl_progress) {

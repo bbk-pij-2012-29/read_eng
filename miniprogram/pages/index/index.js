@@ -10,9 +10,9 @@ Page({
 
     is_init_acct_done: false,
     is_init_read_stats_done: false,
-
+    
     eng_level: app.globalData.eng_level_list,
-    eng_level_select: 3,
+    eng_level_select: 0,
     msg_welcome: '获取免费阅读30天',
     msg_btn: '开始免费试用',
     btn_top_margin: '18rpx',
