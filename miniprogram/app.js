@@ -36,14 +36,17 @@ App({
         "tag": "all",
         "tag_cn": "全部"
       },
+
       {
         "tag": "story",
         "tag_cn": "故事"
       },
+
       {
         "tag": "non-fiction",
         "tag_cn": "科普"
       }, 
+
       {
         "tag": "news",
         "tag_cn": "新闻"
@@ -54,76 +57,97 @@ App({
         "tag_cn": "探险",
         "img": "../../images/int_icons/adventure.png"
       },
+
       {
         "tag": "animal",
         "tag_cn": "动物",
         "img": "../../images/int_icons/animal.png"
       },
+
       {
         "tag": "art",
         "tag_cn": "艺术",
         "img": "../../images/int_icons/art.png"
       },
+
       {
         "tag": "fantasy",
         "tag_cn": "奇幻",
         "img": "../../images/int_icons/fantasy.png"
       },
+
       {
         "tag": "friendship",
         "tag_cn": "朋友",
         "img": "../../images/int_icons/friendship.png"
       },
+
       {
         "tag": "food",
         "tag_cn": "美食",
         "img": "../../images/int_icons/food.png"
       },
+
       {
         "tag": "game",
         "tag_cn": "游戏",
         "img": "../../images/int_icons/game.png"
       },
+
       {
         "tag": "geography",
         "tag_cn": "地理",
         "img": "../../images/int_icons/place.png"
       },
+      
+      {
+        "tag": "health",
+        "tag_cn": "健康",
+        "img": "../../images/int_icons/health.png"
+      },
+
       {
         "tag": "music",
         "tag_cn": "音乐",
         "img": "../../images/int_icons/music.png"
       },
+
       {
         "tag": "nature",
         "tag_cn": "自然",
         "img": "../../images/int_icons/nature.png"
       },
+
       {
         "tag": "science",
         "tag_cn": "科学",
         "img": "../../images/int_icons/science.png"
       },
+
       {
         "tag": "history",
         "tag_cn": "历史",
         "img": "../../images/int_icons/history.png"
       },
+
       {
         "tag": "space",
         "tag_cn": "宇宙",
         "img": "../../images/int_icons/space.png"
       },
+
       {
         "tag": "sport",
         "tag_cn": "运动",
         "img": "../../images/int_icons/sport.png"
       },
+
       {
         "tag": "tale",
         "tag_cn": "童话",
         "img": "../../images/int_icons/fairy.png"
       },
+
       {
         "tag": "travel",
         "tag_cn": "旅行",
