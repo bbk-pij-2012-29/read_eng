@@ -43,7 +43,7 @@ App({
       },
 
       {
-        "tag": "non-fiction",
+        "tag": "non_fiction",
         "tag_cn": "科普"
       }, 
 
