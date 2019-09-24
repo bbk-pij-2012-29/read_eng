@@ -60,6 +60,12 @@
   border-radius: 8rpx;
   font-size: 38rpx;
   font-weight: bold;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
 
 .interest_tag_img{
