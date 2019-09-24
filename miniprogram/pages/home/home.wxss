@@ -1,9 +1,10 @@
 @import "../../style/loader.wxss";
 
 .section{
-  size:32rpx;
+  font-size:38rpx;
   padding: 18rpx 32rpx;
-  color: #585858;
+  color: #292929;
+  font-weight: 600;
 }
 
 .swiper{

@@ -1,7 +1,7 @@
 <!--  swiper 3 featured -->
 <view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting && swiper_featured.length > 0}}">
   <view class="section">
-    <text>今日阅读</text>
+    <text>今日推荐</text>
   </view>
   <swiper class="swiper" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" 
     circular="{{circular}} " interval="{{interval}}" duration="{{duration}}"
@@ -18,7 +18,7 @@
 <!--  list of top 5 featured -->
 <view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
   <view class="section">
-    <text>热搜文榜</text>
+    <text>热门阅读</text>
   </view>
   <block wx:for="{{list_featured}}" wx:key="unique" wx:for-index="idx" wx:if="{{idx < 5}}">
     <view class="list-title-box" data-id="{{item.article_id}}" bindtap="viewArticle">
@@ -46,7 +46,7 @@
 <!--  list of more articles -->
 <view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
   <view class="section">
-    <text>更多好文</text>
+    <text>更多阅读</text>
   </view>
   <block wx:for="{{article}}" wx:key="unique" >
     <view class="list-title-box" data-id="{{item.article_id}}" bindtap="viewArticle">
