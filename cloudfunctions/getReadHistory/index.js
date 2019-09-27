@@ -21,20 +21,22 @@ function getDateFromString(dtStr) {
 }
 
 // 云函数入口函数
-// the function takes openid and start_date
+// the function takes openid, start_date and end_date
 // {
 //   openid: string
 //   start_date: date string
+//   end_date: date string
 // }
 // returns the weekly stats
 exports.main = async (event, context) => {
   const max_limit = 100
 
   const start_date = getDateFromString(event.start_date)
+  const end_date = getDateFromString(event.end_date)
 
   const countRecords = await db.collection('reading_records').where({
     _openid: event.openid,
-    date: _.gte(start_date)
+    date: _.gte(start_date).and(_.lte(end_date))
   }).count()
 
   const totalRecords = countRecords.total
@@ -46,12 +48,12 @@ exports.main = async (event, context) => {
   for (let i = 0; i < batchTimes; i++) {
     const promise = db.collection('reading_records').where({
       _openid: event.openid,
-      date: _.gte(start_date)
+      date: _.gte(start_date).and(_.lte(end_date))
     }).orderBy('date', 'asc').skip(i * max_limit).limit(max_limit).get()
 
     tasks.push(promise)
   }
-  
+
   // async getting promise data back
   readRecords = await Promise.all(tasks)
 

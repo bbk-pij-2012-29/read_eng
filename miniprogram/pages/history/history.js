@@ -140,12 +140,13 @@ Page({
   loadReadHistory: function() {
     // get start end date for the given month
     let dt_rng = app.utility.getMonthStartEndDate(this.data.year, this.data.month)
-
+    
     app.db.collection('reading_records').where({
       _openid: app.globalData.openid,
       date: app.db_cmd.gte(dt_rng.start).and(app.db_cmd.lte(dt_rng.end))
     }).orderBy('date', 'asc').get({
       success: res => {
+        console.log(res)
         let data = res.data
         this.saveLocaReadHistorylData(data)
         

@@ -220,6 +220,10 @@ App({
         let endDate = new Date(year, month, 1)
         endDate.setDate(endDate.getDate() - 1)
 
+        endDate.setHours(23)
+        endDate.setMinutes(59)
+        endDate.setSeconds(59)
+
         return {
           start: startDate,
           end: endDate
