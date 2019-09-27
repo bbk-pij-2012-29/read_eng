@@ -168,6 +168,27 @@ App({
     }
 
     this.utility = {
+      getDateString: function (dt) {
+        return dt.getFullYear() + '-'
+          + dt.getMonth() + '-'
+          + dt.getDate() + '-'
+          + dt.getHours() + '-'
+          + dt.getMinutes() + '-'
+          + dt.getSeconds()
+      },
+
+      getDateFromString: function (dtStr) {
+        let dtStrArray = dtStr.split('-')
+        let y = parseInt(dtStrArray[0])
+        let m = parseInt(dtStrArray[1])
+        let d = parseInt(dtStrArray[2])
+        let h = parseInt(dtStrArray[3])
+        let mm = parseInt(dtStrArray[4])
+        let s = parseInt(dtStrArray[5])
+
+        return new Date(y, m, d, h, mm, s);
+      },
+
       getCurrentMonday: function () {
         let td = new Date()
         td.setHours(0, 0, 0, 0)
@@ -245,9 +266,10 @@ App({
         if (num > 1000) {
           num = num / 1000
           tail = 'K'
-        }
-
-        num = Math.round(num)
+          num = num.toFixed(1)
+        } else {
+          num = Math.round(num)
+        } 
         
         return num + tail
       },

@@ -79,7 +79,7 @@ Page({
     let count_d = 0
 
     for (const dt of read_hist_data) {
-      let d = dt.date.getDay()
+      let d = new Date(dt.date).getDay()
       if (last_d !== d) {
         default_week[d - 1].cls_star = 'star-active'
         count_d = count_d + 1
@@ -107,15 +107,18 @@ Page({
   loadWeekly: function () {
     // request for the reading history
     let dt = app.utility.getCurrentMonday()
+    let start_date = app.utility.getDateString(dt.monday)
 
-    app.db.collection('reading_records').where({
-      _openid: app.globalData.openid,
-      date: app.db_cmd.gte(dt.monday)
-    }).orderBy('date', 'asc').get({
+    wx.cloud.callFunction({
+      name: 'getWeekly',
+      data: {
+        openid: app.globalData.openid,
+        start_date: start_date
+      },
       success: res => {
-
-        let read_hist_data = res.data
-
+        console.log(res)
+        let read_hist_data = res.result.data
+        
         let num_read_day = this.getNumReadDay(read_hist_data, dt.td_day)
 
         this.setData({
@@ -128,7 +131,6 @@ Page({
       },
 
       fail: err => {
-
         this.setData({
           load_error: true,
           msg: '读取错误'

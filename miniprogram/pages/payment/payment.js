@@ -50,6 +50,7 @@ Page({
   showPaymentError: function () {
     wx.showToast({
       title: '支付失败',
+      icon: 'none',
       duration: 2000
     })
 
@@ -127,8 +128,8 @@ Page({
             openid: app.globalData.openid,
             product_id: product_id,
             voucher: voucher_number,
-            transaction_date: JSON.stringify(transaction_date),
-            expire_date: JSON.stringify(expire_date),
+            transaction_date: app.utility.getDateString(transaction_date),
+            expire_date: app.utility.getDateString(expire_date),
             method: method,
             price: price
           },

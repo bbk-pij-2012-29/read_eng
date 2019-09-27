@@ -8,6 +8,18 @@ cloud.init({
 const db = cloud.database()
 const _ = db.command
 
+function getDateFromString(dtStr) {
+  let dtStrArray = dtStr.split('-')
+  let y = parseInt(dtStrArray[0])
+  let m = parseInt(dtStrArray[1])
+  let d = parseInt(dtStrArray[2])
+  let h = parseInt(dtStrArray[3])
+  let mm = parseInt(dtStrArray[4])
+  let s = parseInt(dtStrArray[5])
+
+  return new Date(y, m, d, h, mm, s);
+}
+
 // 云函数入口函数
 // param
 // data: {
@@ -22,9 +34,9 @@ const _ = db.command
 // }
 
 exports.main = async (event, context) => {
-  const expire_date = new Date(JSON.parse(event.expire_date))
-  const transaction_date = new Date(JSON.parse(event.transaction_date))
-
+  const expire_date = getDateFromString(event.expire_date)
+  const transaction_date = getDateFromString(event.transaction_date)
+  
   // look for the voucher according to the number
   const voucher_data = await db.collection('voucher').where({
     voucher: event.voucher
@@ -82,7 +94,7 @@ exports.main = async (event, context) => {
     // record the transaction
     check = await db.collection('transaction').add({
       data: {
-        _openid: event.userInfo.openId,
+        _openid: event.openid,
         date: transaction_date,
         method: event.method,
         product_id: event.product_id,
