@@ -106,8 +106,8 @@ Page({
 
   loadWeekly: function () {
     // request for the reading history
-    let dt = app.utility.getCurrentMonday()
-    let start_date = app.utility.getDateString(dt.monday)
+    const dt = app.utility.getCurrentMonday()
+    const start_date = app.utility.getDateString(dt.monday)
 
     wx.cloud.callFunction({
       name: 'getWeekly',
@@ -116,7 +116,7 @@ Page({
         start_date: start_date
       },
       success: res => {
-        console.log(res)
+        
         let read_hist_data = res.result.data
         
         let num_read_day = this.getNumReadDay(read_hist_data, dt.td_day)

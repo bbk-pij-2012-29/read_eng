@@ -139,17 +139,24 @@ Page({
 
   loadReadHistory: function() {
     // get start end date for the given month
-    let dt_rng = app.utility.getMonthStartEndDate(this.data.year, this.data.month)
+    const dt_rng = app.utility.getMonthStartEndDate(this.data.year, this.data.month)
     
-    app.db.collection('reading_records').where({
-      _openid: app.globalData.openid,
-      date: app.db_cmd.gte(dt_rng.start).and(app.db_cmd.lte(dt_rng.end))
-    }).orderBy('date', 'asc').get({
+    const start_date = app.utility.getDateString(dt_rng.start)
+    const end_date = app.utility.getDateString(dt_rng.end)
+
+    wx.cloud.callFunction({
+      name: 'getReadHistory',
+      data: {
+        openid: app.globalData.openid,
+        start_date: start_date,
+        end_date: end_date
+      },
+
       success: res => {
-        console.log(res)
-        let data = res.data
+
+        let data = res.result.data
         this.saveLocaReadHistorylData(data)
-        
+
         // push the read history
         this.renderReadHistory(data)
       },
