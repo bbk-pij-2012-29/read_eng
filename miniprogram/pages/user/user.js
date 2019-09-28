@@ -101,6 +101,9 @@ Page({
 
       // set it back to true when any update to the read_stats collection
       app.globalData.reloadUserPage = false
+
+      // wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
     }
   },
 
@@ -208,5 +211,18 @@ Page({
 
   reload: function () {
     this.updatePage()
+  },
+
+  onPullDownRefresh() {
+    // wx.showNavigationBarLoading()
+
+    this.setData({
+      is_stats_loaded: false,
+      is_weekly_loaded: false,
+    })
+
+    // request for the reading stats
+    this.loadStats()
+    this.loadWeekly()
   }
 })
