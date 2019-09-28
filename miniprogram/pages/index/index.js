@@ -16,7 +16,8 @@ Page({
     msg_welcome: '获取免费阅读30天',
     msg_btn: '开始免费试用',
     btn_top_margin: '18rpx',
-    load_cls: ''
+    load_cls: '',
+    is_grant_color: 0
   },
   
   // get level featured raw data from cloud db, while rendering loading icon
@@ -104,7 +105,8 @@ Page({
   showLoadBar: function() {
     this.setData({
       show_load: true,
-      load_cls: 'loading-bar-active'
+      load_cls: 'loading-bar-active',
+      is_grant_color: 0
     })
   },
 
@@ -220,6 +222,12 @@ Page({
           }
         })
       }
+    } else {
+      // user reject give access
+      this.setData({
+        load_cls: '',
+        is_grant_color: 1
+      })
     }
   },
   

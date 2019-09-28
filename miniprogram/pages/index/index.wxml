@@ -71,4 +71,9 @@
     <view class="loading-bar {{ load_cls }}"></view>
   </view>
 
+  <view class="flex-row flex-center sub-text"
+  style="margin-top: 32rpx; opacity: {{ is_grant_color }};" 
+  wx:if="{{ !load_error }}">
+  请允许授权进入首页</view>
+
 </view>
