@@ -215,6 +215,7 @@ Page({
 
   onPullDownRefresh() {
     // wx.showNavigationBarLoading()
+    wx.vibrateShort()
 
     this.setData({
       is_stats_loaded: false,
