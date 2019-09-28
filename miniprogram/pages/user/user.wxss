@@ -29,6 +29,13 @@
 
 .userinfo-display-text {
   font-size: 28rpx;
+  margin: 2rpx 0;
+}
+
+.userinfo-display-sub-text {
+  font-size: 28rpx;
+  margin: 2rpx 0;
+  color: #585858;
 }
 
 .weekly-record-banner {
