@@ -7,9 +7,9 @@
     circular="{{circular}} " interval="{{interval}}" duration="{{duration}}"
     previous-margin="{{previousMargin}}rpx" next-margin="{{nextMargin}}rpx">
     <block wx:for="{{swiper_featured}}" wx:key="unique" wx:for-index="idx" wx:if="{{idx < 4}}">
-      <swiper-item class="scroll-view-feature-x" data-id="{{item.article_id}}" bindtap="viewArticle">
-        <image class="scroll-img" src="{{item.url}}" mode="aspectFill"></image>
-        <text class="scroll-txt">{{item.title}}</text>
+      <swiper-item class="swiper-feature" data-id="{{item.article_id}}" bindtap="viewArticle">
+        <image class="swiper-img" src="{{item.url}}" mode="aspectFill"></image>
+        <text class="swiper-txt">{{item.title}}</text>
       </swiper-item>
     </block>
   </swiper>
@@ -38,6 +38,20 @@
       <view class="interest-tag" id="{{index}}" bindtap="gotoDiscovery">
         <image class="interest_tag_img" src="{{item.img}}"></image>
         <text class="interest_tag_txt">{{item.tag_cn}}</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<!--  scroll x ads -->
+<view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
+  <view class="section">
+    <text>阅读技巧</text>
+  </view>
+  <scroll-view scroll-x class="scroll-view-x">
+    <view class="scroll-view-x-ads" wx:for="{{ads}}" wx:key="unique">
+      <view class="flex-row flex-abs-center ads-txt">
+        {{item}}
       </view>
     </view>
   </scroll-view>

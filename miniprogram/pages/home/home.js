@@ -15,6 +15,7 @@ Page({
     art_ids: [], // ids of articles already rendered on page
     swiper_featured: [], // cleaned top featured articles
     list_featured: [], // cleaned second featured articles
+    ads: ["新手指南", "阅读技巧", "经验贴","阅读高分","巴拉巴拉","嘀哩嘀哩"],
 
     interest_tags: app.globalData.interest_tags,
     selected_interest_id: 0,
@@ -23,7 +24,7 @@ Page({
     indicatorDots: true,
     autoplay: true,
     circular: true,
-    interval: 3000,
+    interval: 5000,
     duration: 500,
     previousMargin: 0,
     nextMargin: 0,
