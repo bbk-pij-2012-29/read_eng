@@ -8,7 +8,9 @@
     "pages/history/history",
     "pages/setting/eng_lvl/eng_lvl",
     "pages/payment/payment",
-    "pages/question/question"
+    "pages/question/question",
+    "pages/tipsWiper",
+    "pages/tipSwiper/tipSwiper"
   ],
   "tabBar": {
     "color": "#aaaaaa",
