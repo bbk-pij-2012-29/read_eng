@@ -1,5 +1,5 @@
 <!--  swiper 3 featured -->
-<view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting && swiper_featured.length > 0}}">
+<view class="page-section page-section-spacing" wx:if="{{ !waiting && swiper_featured.length > 0}}">
   <view class="section">
     <text>今日推荐</text>
   </view>
@@ -16,7 +16,7 @@
 </view>
 
 <!--  list of top 5 featured -->
-<view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
+<view class="page-section page-section-spacing" wx:if="{{ !waiting }}">
   <view class="section">
     <text>热门阅读</text>
   </view>
@@ -29,7 +29,7 @@
 </view>
 
 <!--  interest tags -->
-<view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
+<view class="page-section page-section-spacing" wx:if="{{ !waiting }}">
   <view class="section">
     <text>兴趣爱好</text>
   </view>
@@ -44,7 +44,7 @@
 </view>
 
 <!--  scroll x ads -->
-<view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
+<view class="page-section page-section-spacing" wx:if="{{ !waiting }}">
   <view class="section">
     <text>阅读技巧</text>
   </view>
@@ -58,7 +58,7 @@
 </view>
 
 <!--  list of more articles -->
-<view class="page-section page-section-spacing" wx:if="{{ !loading && !waiting }}">
+<view class="page-section page-section-spacing" wx:if="{{ !waiting }}">
   <view class="section">
     <text>更多阅读</text>
   </view>
@@ -76,7 +76,7 @@
 </view>
 
 <!-- middle loading bar -->
-<view class="loader-container" wx:if="{{ loading }}">
+<view class="loader-container" wx:if="{{ waiting }}">
   <view class="load-bar-container">
     <view class="flex-row flex-center">
       <icon type="warn" size="60" color="#88379" wx:if="{{ load_error }}" />

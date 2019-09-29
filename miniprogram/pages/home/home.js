@@ -61,7 +61,7 @@ Page({
   },
   
   // get filted article raw data from cloud db, while rendering loading icon
-  loadArticles: function () {
+  loadArticles: function (isReload) {
     this.setData({
       is_art_loaded: false,
       loading_more: true
@@ -76,7 +76,7 @@ Page({
       },
 
       success: res => {
-        this.feedToArticle(res.result.data)
+        this.feedToArticle(res.result.data, isReload)
 
         if (this.data.is_art_loaded && this.data.is_fea_loaded) {
           this.setData({
@@ -96,20 +96,7 @@ Page({
 
   onLoad: function(options) { 
     // initialise variables
-    this.setData({
-      waiting: true,
-      is_art_loaded: false,
-      is_fea_loaded: false,
-      loading: false,
-      loading_more: false,
-      has_more: true,
-      load_error: false,
-      msg: '读取中',  
-      article: [],
-      art_ids: [], 
-      swiper_featured: [],
-      list_featured: [],
-    })
+    this.init_variables()
     // check if featured & 1st 20 articles in cache while rendering nothing
     let featured_cache = app.utility.getCachedData("article", "featured")
     let article_cache = app.utility.getCachedData("article", "article")
@@ -117,27 +104,27 @@ Page({
     if (featured_cache.has_data && article_cache.has_data) {
       console.log('cache got')
       this.feedToFeatures(featured_cache.data.result.data)
-      this.feedToArticle(article_cache.data.result.data)
-      this.setData({
-        waiting: false
-      })
+      this.feedToArticle(article_cache.data.result.data, true)
+      
     } else {
       console.log('cache checked but no cache')
       this.setData({
         loading: true,
-        waiting: false,
       })
 
-      this.loadArticles()
+      this.loadArticles(true)
       this.loadFeatured()
     }
+    this.setData({
+      waiting: false
+    })
   },
 
   onReachBottom: function() {   
     console.log("reach bottom")
     
     if (!this.data.loading_more) {
-      this.loadArticles()
+      this.loadArticles(false)
     }  else {
       console.log("loading in progress")
     }
@@ -176,8 +163,8 @@ Page({
   
 
   feedToFeatures: function (data_source) {
-    let temp_swiper = this.data.swiper_featured
-    let temp_list = this.data.list_featured
+    let temp_swiper = []
+    let temp_list = []
 
     const feed_fea = data_source
 
@@ -199,11 +186,16 @@ Page({
     console.log("list featured:", temp_list)
   },
 
-  feedToArticle: function (data_source) {
+  feedToArticle: function (data_source, isReload) {
     const feed = data_source
-    if (feed.length > 0) {
-      let temp_article = this.data.article
-      let temp_ids = this.data.art_ids
+    var temp_article = []
+    var temp_ids = []
+    if (!isReload) {
+      var temp_article = this.data.article
+      var temp_ids = this.data.art_ids
+    } 
+    
+    if (feed.length > 0) {  
       for (let i = 0; i < feed.length; i++) {
         temp_article.push(feed[i])
         temp_ids.push(feed[i].article_id)
@@ -228,6 +220,35 @@ Page({
         loading_more: false,
       })
     }
+  },
+
+  onPullDownRefresh() {
+    // wx.showNavigationBarLoading()
+    wx.vibrateShort()
+    this.init_variables()
+    this.setData({
+      waiting: false,
+      loading: true,
+    })
+
+    // request for latest features and articles
+    this.loadArticles(true)
+    this.loadFeatured()
+
+    wx.stopPullDownRefresh()
+  },
+
+  init_variables: function () {
+    this.setData({
+      waiting: true,
+      is_art_loaded: false,
+      is_fea_loaded: false,
+      loading: false,
+      loading_more: false,
+      has_more: true,
+      load_error: false,
+      msg: '读取中',
+    })
   }
 })
 
