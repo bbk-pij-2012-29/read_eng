@@ -253,7 +253,8 @@ Page({
                       gender: app.globalData.userInfo.gender,
                       language: app.globalData.userInfo.language,
                       city: app.globalData.userInfo.city,
-                      province: app.globalData.userInfo.province
+                      province: app.globalData.userInfo.province,
+                      avatarUrl: app.globalData.userInfo.avatarUrl
                     },
 
                     success: console.log,
