@@ -12,6 +12,7 @@ Page({
     avatarUrl: '../../images/user-unlogin.png',
     username: '',
     exp_level: 0,
+    expire_date: '',
 
     week_read_num: 0,
     
@@ -176,9 +177,12 @@ Page({
   },
 
   updatePage: function () {
+    const expire_date = new Date(app.globalData.expire_date)
+
     this.setData({
       avatarUrl: app.globalData.userInfo.avatarUrl,
       username: app.globalData.userInfo.nickName,
+      expire_date: expire_date.toLocaleDateString('zh-Hans-CN'),
       loading: false,
       load_error: false,
       msg: '读取中'

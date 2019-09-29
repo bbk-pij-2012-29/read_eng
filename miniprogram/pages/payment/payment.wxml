@@ -64,7 +64,7 @@
 
     <view class="flex-row flex-abs-center" style="margin-top: 18rpx;">
       <input type="number" 
-      placeholder="我有优惠券"
+      placeholder="我有代购券"
       confirm-type="done"
       placeholder-style="text-align: center;" 
       class="primary-input flex-row flex-center index-control"

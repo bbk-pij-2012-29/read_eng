@@ -239,6 +239,29 @@ Page({
           wx.getUserInfo({
             success: res => {
               app.globalData.userInfo = res.userInfo
+
+              // update the user info to account
+              app.db.collection('account').where({
+                _openid: app.globalData.openid
+              }).get({
+                success: function (res) {
+                  let docID = res.data[0]._id
+                  
+                  app.db.collection('account').doc(docID).update({
+                    data: {
+                      nickName: app.globalData.userInfo.nickName,
+                      gender: app.globalData.userInfo.gender,
+                      language: app.globalData.userInfo.language,
+                      city: app.globalData.userInfo.city,
+                      province: app.globalData.userInfo.province
+                    },
+
+                    success: console.log,
+                    fail: console.error
+                  })
+                }
+              })
+              
               // if success go to the home page
               this.gotoHome()
             },

@@ -40,7 +40,8 @@
     </view>
 
     <view class="flex-col flex-center userinfo-display-container">
-      <view class="userinfo-display-text">{{ username }}</view>
+      <view class="userinfo-display-text">用户名: {{ username }}</view>
+      <view class="userinfo-display-text">到期日: {{ expire_date }}</view>
       <view class="userinfo-display-text">经验值: {{ exp_level }}</view>
     </view>
   </view>
