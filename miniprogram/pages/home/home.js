@@ -46,6 +46,8 @@ Page({
       success: res => {
         this.feedToFeatures(res.result.data)
         if (this.data.is_art_loaded && this.data.is_fea_loaded) {
+          wx.stopPullDownRefresh()
+          
           this.setData({
             loading: false
           })
@@ -79,6 +81,8 @@ Page({
         this.feedToArticle(res.result.data, isReload)
 
         if (this.data.is_art_loaded && this.data.is_fea_loaded) {
+          wx.stopPullDownRefresh()
+
           this.setData({
             loading: false
           })
@@ -235,7 +239,7 @@ Page({
     this.loadArticles(true)
     this.loadFeatured()
 
-    wx.stopPullDownRefresh()
+    // wx.stopPullDownRefresh()
   },
 
   init_variables: function () {

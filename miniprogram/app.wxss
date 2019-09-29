@@ -64,7 +64,7 @@ button::after{
 }
 
 .orange-light-btn {
-  border: 1rpx solid #ff8246;
+  border: 2rpx solid #ff8246;
   color: #ff8246;
   background-color: white;
   background-size: cover;
