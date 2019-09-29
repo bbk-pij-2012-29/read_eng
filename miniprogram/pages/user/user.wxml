@@ -111,25 +111,6 @@
           </view>
 
         </view>
-
-        <!-- <view class="flex-row">
-          <view class="flex-1">
-            <button lang="zh_CN" 
-            class="{{ stats_btn_left_cls }} stats-btn-left btn-small"
-            hover-class="{{ stats_btn_left_hover_cls }}"
-            bindtap="showYTDStats"
-            >今年</button>
-          </view>
-
-          <view class="flex-1">
-            <button lang="zh_CN" 
-            class="{{ stats_btn_right_cls }} stats-btn-right btn-small"
-            hover-class="{{ stats_btn_right_hover_cls }}"
-            bindtap="showAllStats"
-            >全时</button>
-          </view>
-        </view> -->
-        
       </view>
     </view>
 
@@ -171,6 +152,38 @@
     </view>
   </view>
 
+  <view class="menu-btn-bar menu-border-top flex-row" bindtap="goToShowPage" hover-class="menu-btn-hover">
+    <view class="flex-row flex-abs-center">
+      <image src="../../images/like.png" class="menu-btn-icon"></image>
+    </view>
+
+    <view class="flex-1 flex-row flex-align-center">
+      <view class="menu-btn">
+        晒一晒
+      </view>
+    </view>
+
+    <view class="flex-row flex-abs-center">
+      <image src="../../images/menu-arrow.png" class="menu-btn-icon-small"></image>
+    </view>
+  </view>
+
+  <view class="menu-btn-bar menu-border-top flex-row" bindtap="goToFriends" hover-class="menu-btn-hover">
+    <view class="flex-row flex-abs-center">
+      <image src="../../images/friends.png" class="menu-btn-icon"></image>
+    </view>
+
+    <view class="flex-1 flex-row flex-align-center">
+      <view class="menu-btn">
+        我的好友
+      </view>
+    </view>
+
+    <view class="flex-row flex-abs-center">
+      <image src="../../images/menu-arrow.png" class="menu-btn-icon-small"></image>
+    </view>
+  </view>
+
   <view class="menu-btn-bar menu-border-top flex-row" bindtap="goToReadHistory" hover-class="menu-btn-hover">
     <view class="flex-row flex-abs-center">
       <image src="../../images/history.png" class="menu-btn-icon"></image>
@@ -178,7 +191,7 @@
 
     <view class="flex-1 flex-row flex-align-center">
       <view class="menu-btn">
-        查看阅读历史
+        阅读历史
       </view>
     </view>
 
@@ -194,7 +207,7 @@
 
     <view class="flex-1 flex-row flex-align-center">
       <view class="menu-btn">
-        重设阅读难度
+        阅读难度
       </view>
     </view>
 
