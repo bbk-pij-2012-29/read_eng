@@ -45,8 +45,9 @@
 <!--  list of articles -->
 <view class="scroll-container">
   <scroll-view class="page-section-spacing" style="height: {{scroll_y_height}}px"
-              scroll-y  bindscrolltolower='scrollToLower' lower-threshold='30' 
-              wx:if="{{ !loading }}">
+              scroll-y  bindscrolltoupper='scrollToUpper' bindscrolltolower='scrollToLower' 
+              lower-threshold='30' wx:if="{{ !loading }}">
+    <view class="loader-msg" wx:if="{{refreshing}}" >玩命刷新...</view>
     <block wx:for="{{article}}" wx:key="unique" >
       <view class="list-title-box" data-id="{{item.article_id}}" bindtap="viewArticle">
         <text class="list-title-text">{{item.title}}</text>

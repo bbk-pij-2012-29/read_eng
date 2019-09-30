@@ -11,6 +11,7 @@ Page({
     scroll_left: 0,
     toView: "",
     loading: true,
+    refreshing: false,
     loading_more: false, // when reach bottom check if a loading is in process
     has_more: true,
     load_error: false,
@@ -69,7 +70,6 @@ Page({
       },
       success: res => {
         const feed = res.result.data
-        console.log("more loaded: ", feed)
         
         if (feed.length > 0) {
           // render more to current page
@@ -107,8 +107,9 @@ Page({
       },
 
       fail: err => {
-        console.log(err)
+        console.log("more article requested fail", err)
         this.setData({
+          loading_more: false,
           load_error: true,
           msg: "读取错误"
         })
@@ -194,8 +195,23 @@ Page({
     this.renewArticles()
   },
 
+  scrollToUpper: function (e) {
+    wx.stopPullDownRefresh()
+    wx.vibrateShort()
+    this.setData({
+      refreshing: true,
+      has_more: true,
+      load_error: false,
+    })
+    const current_int_name = this.data.interest_tags[this.data.current_interest].tag
+    const current_cat_name = this.data.cat_tags[this.data.current_category].tag
+    let key = current_int_name.concat("_", current_cat_name)
+    this.renewFromCloud(current_int_name, current_cat_name, key)
+
+  },
+
   scrollToLower: function (e) {
-    console.log('scrollToLower:', e)
+
     // load more articles
     if (this.data.has_more && !this.data.loading_more) {
       this.moreArticles()
@@ -254,11 +270,15 @@ Page({
       success: res => {
         this.feedToLists(res.result.data)
         app.utility.saveCachedData('discovery', key, res.result.data)
+        this.setData({
+          refreshing: false
+        })
       },
 
       fail: err => {
-        console.log(err)
+        console.log("renew from cloud fails", err)
         this.setData({
+          refreshing: false,
           load_error: true,
           msg: "读取错误"
         })
