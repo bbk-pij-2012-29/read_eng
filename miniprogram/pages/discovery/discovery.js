@@ -196,24 +196,25 @@ Page({
   },
 
   scrollToUpper: function (e) {
-    wx.stopPullDownRefresh()
-    wx.vibrateShort()
-    this.setData({
-      refreshing: true,
-      has_more: true,
-      load_error: false,
-    })
-    const current_int_name = this.data.interest_tags[this.data.current_interest].tag
-    const current_cat_name = this.data.cat_tags[this.data.current_category].tag
-    let key = current_int_name.concat("_", current_cat_name)
-    this.renewFromCloud(current_int_name, current_cat_name, key)
-
+    if (!this.data.loading_more && !this.data.refreshing) {
+      wx.stopPullDownRefresh()
+      wx.vibrateShort()
+      this.setData({
+        refreshing: true,
+        has_more: true,
+        load_error: false,
+      })
+      const current_int_name = this.data.interest_tags[this.data.current_interest].tag
+      const current_cat_name = this.data.cat_tags[this.data.current_category].tag
+      let key = current_int_name.concat("_", current_cat_name)
+      this.renewFromCloud(current_int_name, current_cat_name, key)
+    }
   },
 
   scrollToLower: function (e) {
 
     // load more articles
-    if (this.data.has_more && !this.data.loading_more) {
+    if (this.data.has_more && !this.data.loading_more && !this.data.refreshing) {
       this.moreArticles()
     } else {
       console.log("loading in progress / no more articles")
