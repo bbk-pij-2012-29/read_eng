@@ -269,7 +269,7 @@ Page({
 
             fail: err => {
               // this means the user removed the app and come back again
-              app.globalData.showUserHintModal = true
+              app.globalData.isFirstTime = true
 
               this.setData({
                 first_time: true,
@@ -282,7 +282,7 @@ Page({
           })
         } else {
           // this means the user removed the app and come back again
-          app.globalData.showUserHintModal = true
+          app.globalData.isFirstTime = true
 
           this.setData({
             first_time: true,
@@ -294,7 +294,7 @@ Page({
         }
       },
       fail: err => {
-        app.globalData.showUserHintModal = true
+        app.globalData.isFirstTime = true
         
         this.setData({
           first_time: true
@@ -326,7 +326,7 @@ Page({
 
         // check if it's the first time user
         if (res.result.is_first_time) {
-          app.globalData.showUserHintModal = true
+          app.globalData.isFirstTime = true
 
           this.setData({
             first_time: true
