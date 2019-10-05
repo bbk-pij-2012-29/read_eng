@@ -236,5 +236,19 @@ Page({
     // request for the reading stats
     this.loadStats()
     this.loadWeekly()
+  },
+
+
+  goToShowPage: function() {
+    wx.navigateTo({
+      url: '../showPage/showPage?who=' + app.globalData.openid
+    })
+  },
+
+
+  goToFriends: function() {
+    wx.navigateTo({
+      url: '../friends/friends'
+    })
   }
 })

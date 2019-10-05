@@ -1,2 +1,39 @@
-<!--miniprogram/pages/showPage/showPage.wxml-->
-<text>miniprogram/pages/showPage/showPage.wxml</text>
+<!-- waiting for loading -->
+<block wx:if="{{ loading }}">
+  <view class="loader-container">
+    <view class="flex-row flex-center" wx:if="{{ !load_error }}">
+      <image src="../../images/read.svg" class="loader-icon"></image>
+    </view>
+
+    <view class="load-bar-container">
+      <view class="flex-row flex-center">
+        <icon type="warn" size="60" color="#88379" wx:if="{{ load_error }}" />
+      </view>
+
+      <view wx:if="{{ !load_error }}" class="flex-row flex-center">
+        <view class="loading-bar loading-bar-active"></view>
+        <view class="loading-bar loading-bar-active"></view>
+        <view class="loading-bar loading-bar-active"></view>
+        <view class="loading-bar loading-bar-active"></view>
+      </view>
+
+      <view class="loader-msg">{{ msg }}</view>
+
+      <view class="menu-top-margin-l" wx:if="{{ load_error }}">
+        <button 
+        class="orange-light-btn btn-small" 
+        hover-class="btn-orange-light-hover"
+        bindtap="reload"
+        >重新读取</button>
+      </view>
+    </view>
+  </view>
+</block>
+
+<!-- actual page content -->
+<block wx:elif="{{ !loading }}">
+  
+  
+  
+
+</block>

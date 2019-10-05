@@ -12,7 +12,8 @@ Page({
     author: '',
     num_words: 0,
     cover_url: '',
-    article_content: {}
+    article_content: {},
+    isAdv: false
   },
 
   renderArticleData: function (res) {

@@ -118,7 +118,7 @@ App({
       goToArticle: function (app, article_id) {
         let expire_date = null
         const today = new Date()
-
+        
         if (app.globalData.expire_date === null) {
           // get the expire date first
           app.db.collection('account').where({

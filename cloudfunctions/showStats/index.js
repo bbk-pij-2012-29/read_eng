@@ -28,35 +28,15 @@ function getDateString (dt) {
     + dt.getSeconds()
 }
 
-function getNumReadDay (read_hist_data, td) {
-  if (td === 0) {
-    td = 7
-  }
-
-  const cn_week = ['一', '二', '三', '四', '五', '六', '日']
-  let default_week = []
-
-  for (let i = 0; i < 7; i++) {
-    default_week.push({
-      id: (i + 1),
-      date: cn_week[i],
-      cls_dt: '',
-      cls_star: ''
-    })
-  }
-
-  // mark today
-  default_week[td - 1].date = '今日'
-  default_week[td - 1].cls_dt = 'today'
-
+function getWeeklyStats (read_hist_data) {
   // mark stars
   let last_d = 0
   let count_d = 0
 
   for (const dt of read_hist_data) {
     let d = new Date(dt.date).getDay()
-    if (last_d !== d) {
-      default_week[d - 1].cls_star = 'star-active'
+
+    if (last_d !== d) {      
       count_d = count_d + 1
       last_d = d
     }
@@ -64,7 +44,8 @@ function getNumReadDay (read_hist_data, td) {
 
   return {
     week_read_num: count_d,
-    week: default_week
+    num_articles: read_hist_data.length,
+    articles: read_hist_data.map(x => x.article_id)
   }
 }
 
@@ -89,16 +70,50 @@ exports.main = async (event, context) => {
   })
 
   // summarise the weekly days
-  const num_read_day = getNumReadDay(res.result.data, monday.td_day)
+  const weeklyStats = getWeeklyStats(res.result.data)
 
-  // get read stats
-  const statsRes = await db.collection('read_stats').where({
+  // summrize the additional weekly stats
+  const max_limit = 100
+  const totalArticles = weeklyStats.num_articles
+
+  const batchTimes = Math.ceil(totalArticles / max_limit)
+
+  const tasks = []
+  for (let i = 0; i < batchTimes; i++) {
+    const promise = db.collection('article').where({
+      article_id: _.in(weeklyStats.articles)
+    }).skip(i * max_limit).limit(max_limit).get()
+
+    tasks.push(promise)
+  }
+
+  const articlesRes = await Promise.all(tasks)
+
+  let articles = []
+  for (let i = 0; i < batchTimes; i++) {
+    articles = articles.concat(articlesRes[i].data)
+  }
+
+  let numWords = 0
+  let numQuestions = 0
+
+  for (let i = 0; i < articles.length; i++) {
+    numWords = numWords + articles[i].num_words
+    numQuestions = numQuestions + articles[i].num_questions
+  }
+
+  // get the user info
+  const userRes = await db.collection('account').where({
     _openid: openid
   }).get()
 
-  const statsData = statsRes.data
+  const userInfo = userRes.data
 
   return {
-    event, num_read_day, statsData
+    event, 
+    numDays: weeklyStats.week_read_num, 
+    numArticles: weeklyStats.num_articles, 
+    numWords, 
+    numQuestions
   }
 }

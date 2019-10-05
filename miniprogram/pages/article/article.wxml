@@ -52,7 +52,7 @@
       </view>
     </view>
 
-    <view class="flex-row flex-abs-center menu-top-margin-xl menu-bottom-margin-m">
+    <view class="flex-row flex-abs-center menu-top-margin-xl menu-bottom-margin-m" wx:if="{{ !isAdv }}">
       <view>
         <button 
         class="orange-light-btn btn-middle article-btn" 

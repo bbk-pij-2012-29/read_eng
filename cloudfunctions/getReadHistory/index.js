@@ -55,7 +55,7 @@ exports.main = async (event, context) => {
   }
 
   // async getting promise data back
-  readRecords = await Promise.all(tasks)
+  const readRecords = await Promise.all(tasks)
 
   let data = []
   for (let i = 0; i < batchTimes; i++) {
