@@ -39,7 +39,15 @@ Page({
       news: 0,
       non_fiction: 0,
       story: 0
-    }
+    },
+
+    modalHidden: true
+  },
+
+  modalChange: function () {
+    this.setData({
+      modalHidden: true
+    })
   },
 
   goToResetEngLvl: function () {
@@ -105,6 +113,13 @@ Page({
 
       // wx.hideNavigationBarLoading()
       wx.stopPullDownRefresh()
+
+      // check condition to show modal
+      if (app.globalData.showUserHintModal) {
+        this.setData({
+          modalHidden: false
+        })
+      }
     }
   },
 

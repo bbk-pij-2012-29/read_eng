@@ -152,6 +152,7 @@
     </view>
   </view>
 
+  <!-- menu buttons -->
   <view class="menu-btn-bar menu-border-top flex-row" bindtap="goToShowPage" hover-class="menu-btn-hover">
     <view class="flex-row flex-abs-center">
       <image src="../../images/like.png" class="menu-btn-icon"></image>
@@ -159,7 +160,7 @@
 
     <view class="flex-1 flex-row flex-align-center">
       <view class="menu-btn">
-        成绩展示
+        本周打卡
       </view>
     </view>
 
@@ -218,3 +219,11 @@
 
   <view class="empty-bottom"></view>
 </block>
+
+<modal title="打卡分享 = 免费阅读" 
+confirm-text="知道啦" 
+hidden="{{modalHidden}}" 
+bindconfirm="modalChange"
+no-cancel="true">
+  1.一周阅读三天; 2.截屏本周打卡并分享朋友圈、可在我的好友中替好友打卡; 3.添加客服的微信「duyingyuma」; 4.发送朋友圈分享截屏、成绩展示截屏给我们的客服; 5.我们会在验证后、增加展示账户的阅读到期日
+</modal>
