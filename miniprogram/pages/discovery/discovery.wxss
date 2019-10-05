@@ -11,7 +11,7 @@
   flex-direction: column;
   white-space: nowrap;
   width: 100%;
-  position: absolute;
+  position: fixed;
   top: 0; 
   padding-bottom: 18rpx;
 }
