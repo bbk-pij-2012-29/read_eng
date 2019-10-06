@@ -46,9 +46,7 @@
 <view class="scroll-container">
   <scroll-view class="page-section-spacing" style="height: {{scroll_y_height}}px" scroll-y
               bindscrolltoupper='scrollToUpper' bindscrolltolower="scrollToLower" 
-              upper-threshold="-78" lower-threshold="0"
-              bindtouchstart="start" bindtouchend="end"
-              wx:if="{{ !loading }}">
+              upper-threshold="-98" lower-threshold="0" wx:if="{{ !loading }}">
     <view class="loader-msg" wx:if="{{refreshing}}" >玩命刷新...</view>
     <block wx:for="{{article}}" wx:key="unique" >
       <view class="list-title-box" data-id="{{item.article_id}}" bindtap="viewArticle">
