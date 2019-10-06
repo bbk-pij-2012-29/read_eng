@@ -115,7 +115,13 @@ App({
         return num + tail
       },
 
-      goToArticle: function (app, article_id) {
+      goToArticle: function (app, article_id, isAdv) {
+        let type = 'article'
+
+        if (isAdv) {
+          let type = 'adv'
+        }
+
         let expire_date = null
         const today = new Date()
         
@@ -134,7 +140,7 @@ App({
                 app.globalData.selected_article_id = parseInt(article_id)
 
                 wx.navigateTo({
-                  url: '../article/article'
+                  url: '../article/article?type=' + type + '&id=' + article_id
                 })
               } else {
                 wx.navigateTo({
@@ -154,7 +160,7 @@ App({
             app.globalData.selected_article_id = parseInt(article_id)
 
             wx.navigateTo({
-              url: '../article/article'
+              url: '../article/article?type=' + type + '&id=' + article_id
             })
           } else {
             wx.navigateTo({

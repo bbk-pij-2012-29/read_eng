@@ -9,13 +9,26 @@ const db = cloud.database()
 const _ = db.command
 
 // 云函数入口函数
+// Params: {
+//   type: String [article, adv],
+//   id: Int
+// }
+// according to the article id and type to query and load the article
 exports.main = async (event, context) => {
-  const article = await db.collection('article').where({
-    article_id: event.article_id
+  let coll_name = 'article'
+  let coll_content_name = 'article_content'
+
+  if (event.type === 'adv') {
+    coll_name = 'adv_article'
+    coll_content_name = 'adv_article_content'
+  }
+
+  const article = await db.collection(coll_name).where({
+    article_id: event.id
   }).get()
 
-  const article_content = await db.collection('article_content').where({
-    article_id: event.article_id
+  const article_content = await db.collection(coll_content_name).where({
+    article_id: event.id
   }).get()
   
   const article_data = article.data[0]

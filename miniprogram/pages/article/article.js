@@ -13,6 +13,9 @@ Page({
     num_words: 0,
     cover_url: '',
     article_content: {},
+    
+    type: '',
+    id: 0,
     isAdv: false
   },
 
@@ -54,7 +57,8 @@ Page({
     wx.cloud.callFunction({
       name: "loadArticle",
       data: {
-        article_id: app.globalData.selected_article_id
+        type: this.data.type,
+        article_id: this.data.id
       },
       success: res => {
         this.renderArticleData(res)
@@ -68,7 +72,19 @@ Page({
     })
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
+    let isAdv = false
+
+    if (options.type === 'adv') {
+      isAdv = true
+    }
+    
+    this.setData({
+      type: options.type,
+      id: parseInt(options.id),
+      isAdv: isAdv
+    })
+    
     this.updatePage()
   },
 
@@ -83,6 +99,6 @@ Page({
   },
 
   onUnload: function () {
-    app.utility.removeCachedData('questions', app.globalData.selected_article_id)
+    app.utility.removeCachedData('questions', this.data.id)
   }
 })
