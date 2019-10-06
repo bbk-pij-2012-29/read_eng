@@ -116,6 +116,8 @@ App({
       },
 
       goToArticle: function (app, article_id, isAdv) {
+        // type can only be article or adv in lower case
+        // defined by the cloud function and article page
         let type = 'article'
 
         if (isAdv) {
