@@ -106,9 +106,9 @@ Page({
         s_class = 'record-m'
       }
 
-      if (i === data.length - 1) {
-        s_class = s_class + ' menu-bottom-margin-l'
-      }
+      // if (i === data.length - 1) {
+      //   s_class = s_class + ' menu-bottom-margin-l'
+      // }
 
       rtn.push({
         article_id: data[i].article_id,
@@ -142,7 +142,7 @@ Page({
     query.select('.read-record-box').boundingClientRect(function (res) {
       if (res.height < that.data.s_view_height) {
         that.setData({
-          screen_fill_height: that.data.s_view_height - res.height
+          screen_fill_height: that.data.s_view_height - res.height + 1
         })
       } else {
         that.setData({
