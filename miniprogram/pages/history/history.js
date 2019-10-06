@@ -142,7 +142,7 @@ Page({
     query.select('.read-record-box').boundingClientRect(function (res) {
       if (res.height < that.data.s_view_height) {
         that.setData({
-          screen_fill_height: that.data.s_view_height - res.height - 10
+          screen_fill_height: that.data.s_view_height - res.height
         })
       } else {
         that.setData({
