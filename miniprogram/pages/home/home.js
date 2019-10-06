@@ -113,7 +113,7 @@ Page({
     } else {
       console.log('cache checked but no cache')
       this.setData({
-        loading: true,
+        loading: true
       })
 
       this.loadArticles(true)
@@ -232,7 +232,7 @@ Page({
     this.init_variables()
     this.setData({
       waiting: false,
-      loading: true,
+      loading: false,
     })
 
     // request for latest features and articles
