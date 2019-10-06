@@ -2,7 +2,6 @@ const app = getApp()
 
 Page({
   data: {
-    waiting: true,
     is_art_loaded: false,
     is_fea_loaded: false,
     loading: false,
@@ -119,9 +118,6 @@ Page({
       this.loadArticles(true)
       this.loadFeatured()
     }
-    this.setData({
-      waiting: false
-    })
   },
 
   onReachBottom: function() {   
@@ -147,9 +143,6 @@ Page({
     try{ 
       wx.setStorageSync("selected_interest_id", this.data.selected_interest_id)
     } catch (e) {}
-    
-    //检查当前兴趣是否存在云函数上(当前用户)， 如无，添加到云函数，如有，过。
-
     
     wx.switchTab({ url: '../discovery/discovery' })
   },
@@ -229,22 +222,16 @@ Page({
   onPullDownRefresh() {
     // wx.showNavigationBarLoading()
     wx.vibrateShort()
+    
     this.init_variables()
-    this.setData({
-      waiting: false,
-      loading: false,
-    })
 
     // request for latest features and articles
     this.loadArticles(true)
     this.loadFeatured()
-
-    // wx.stopPullDownRefresh()
   },
 
   init_variables: function () {
     this.setData({
-      waiting: true,
       is_art_loaded: false,
       is_fea_loaded: false,
       loading: false,
