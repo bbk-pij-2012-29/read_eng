@@ -46,8 +46,7 @@
 
 <!-- reading records -->
 <scroll-view scroll-y style="height: {{s_view_height}}px;" 
-class="read-record-container"
-wx:if="{{ !loading && !no_history }}">
+class="read-record-container" wx:if="{{ !loading && !no_history }}">
 
   <view wx:for="{{history}}" wx:key="unique" 
   class="read-record {{item.score_class}}" 
