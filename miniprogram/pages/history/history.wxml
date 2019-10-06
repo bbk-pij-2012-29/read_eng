@@ -26,7 +26,7 @@
 
 <!-- month picker -->
 <view class="month-picker-conainer">
-  <view class="flex-row flex-abs-center">
+  <view class="flex-1 flex-row flex-abs-center">
     
     <button class="round-btn" hover-class="btn-orange-light-hover" bindtap="monthBack" disabled="{{ disable_nav_btn }}">
       <image src="../../images/left-arrow.png" class="btn-icon"></image>
@@ -46,7 +46,7 @@
 
 <!-- reading records -->
 <scroll-view scroll-y style="height: {{s_view_height}}px;" 
-class="read-record-container" 
+class="read-record-container" bindscroll="historyScroll" 
 wx:if="{{ !loading && !no_history }}">
 
   <view wx:for="{{history}}" wx:key="unique" 
