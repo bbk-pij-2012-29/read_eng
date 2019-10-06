@@ -4,12 +4,12 @@
   padding-top: 38rpx;
   padding-bottom: 38rpx;
   border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
-  display: flex;
+  /* display: flex;
   flex-direction: row;
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 10;
+  z-index: 10; */
 }
 
 .year-month {
@@ -24,12 +24,12 @@
 }
 
 .read-record-container {
-  position: fixed;
+  /* position: fixed;
   top: 146rpx;
-  z-index: 10;
+  z-index: 10; */
   /* flex: 1; */
   /* height: 300rpx; */
-  white-space:nowrap;
+  /* white-space:nowrap; */
   overflow-y: scroll;
 }
 
