@@ -10,7 +10,8 @@ Page({
     history: [],
     no_history: false,
     disable_nav_btn: false,
-    s_view_height: 0
+    s_view_height: 0,
+    screen_fill_height: 0
   },
 
   goToArticle: function (e) {
@@ -135,6 +136,20 @@ Page({
       loading: false,
       disable_nav_btn: false
     })
+
+    let that = this
+    let query = wx.createSelectorQuery().in(this)
+    query.select('.read-record-box').boundingClientRect(function (res) {
+      if (res.height < that.data.s_view_height) {
+        that.setData({
+          screen_fill_height: that.data.s_view_height - res.height - 10
+        })
+      } else {
+        that.setData({
+          screen_fill_height: 0
+        })
+      }
+    }).exec()
   },
 
   loadReadHistory: function() {
