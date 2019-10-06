@@ -47,16 +47,22 @@
 <!-- reading records -->
 <scroll-view scroll-y style="height: {{s_view_height}}px;" 
 class="read-record-container" wx:if="{{ !loading && !no_history }}">
-
-  <view wx:for="{{history}}" wx:key="unique" 
-  class="read-record {{item.score_class}}" 
-  data-id="{{item.article_id}}" hover-class="read-record-hover" 
-  bindtap="goToArticle">
-    <view class="record-day">{{item.day}}日</view>
-    <view class="record-title">{{item.title}}</view>
-    <view class="record-score">{{item.score}}</view>
-  </view>
   
+  <view class="read-record-box">
+  
+    <view wx:for="{{history}}" wx:key="unique" 
+    class="read-record {{item.score_class}}" 
+    data-id="{{item.article_id}}" hover-class="read-record-hover" 
+    bindtap="goToArticle">
+      <view class="record-day">{{item.day}}日</view>
+      <view class="record-title">{{item.title}}</view>
+      <view class="record-score">{{item.score}}</view>
+    </view>
+  
+  </view>
+
+  <!-- fill the full screen -->
+  <view style="height: {{screen_fill_height}}px;"></view>
 </scroll-view>
 
 <!-- show if no history -->
