@@ -2,7 +2,7 @@ const app = getApp()
 
 Page({
   data: {
-    msg: '一起读英语吧、马上就来！',
+    msg: '一起读英语吧, 马上就来！',
     load_error: false,
     show_load: false,
     first_time: false,
@@ -51,7 +51,7 @@ Page({
 
   updatePage: function () {
     this.setData({
-      msg: '一起读英语吧、马上就来！',
+      msg: '一起读英语吧, 马上就来！',
       load_error: false,
       show_load: false,
       first_time: false,
