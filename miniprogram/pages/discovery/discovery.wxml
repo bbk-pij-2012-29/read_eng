@@ -47,7 +47,7 @@
   <scroll-view class="page-section-spacing" style="height: {{scroll_y_height}}px" scroll-y
               bindscrolltoupper='scrollToUpper' bindscrolltolower="scrollToLower" 
               upper-threshold="-88" lower-threshold="0" wx:if="{{ !loading }}">
-    <view class="loader-msg" wx:if="{{refreshing}}" >玩命刷新...</view>
+    <view class="loader-msg" wx:if="{{refreshing}}" >玩命刷新中...</view>
     <block wx:for="{{article}}" wx:key="unique" >
       <view class="list-title-box" data-id="{{item.article_id}}" bindtap="viewArticle">
         <text class="list-title-text">{{item.title}}</text>

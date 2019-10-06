@@ -11,7 +11,8 @@ Page({
     no_history: false,
     disable_nav_btn: false,
     s_view_height: 0,
-    screen_fill_height: 0
+    screen_fill_height: 0,
+    refreshing: false
   },
 
   goToArticle: function (e) {
@@ -139,17 +140,24 @@ Page({
 
     let that = this
     let query = wx.createSelectorQuery().in(this)
-    query.select('.read-record-box').boundingClientRect(function (res) {
-      if (res.height < that.data.s_view_height) {
-        that.setData({
-          screen_fill_height: that.data.s_view_height - res.height + 1
-        })
-      } else {
-        that.setData({
-          screen_fill_height: 0
-        })
-      }
-    }).exec()
+    try {
+      query.select('.read-record-box').boundingClientRect(function (res) {
+        if (res.height < that.data.s_view_height) {
+          that.setData({
+            screen_fill_height: that.data.s_view_height - res.height + 1
+          })
+        } else {
+          that.setData({
+            screen_fill_height: 0
+          })
+        }
+      }).exec()
+    }
+    catch (error) {
+      that.setData({
+        screen_fill_height: 0
+      })
+    }
   },
 
   loadReadHistory: function() {
@@ -228,5 +236,9 @@ Page({
 
   reload: function () {
     this.updatePage()
+  },
+
+  scrollToUpper: function (e) {
+    console.log(e)
   }
 })

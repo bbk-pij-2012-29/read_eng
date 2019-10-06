@@ -46,8 +46,11 @@
 
 <!-- reading records -->
 <scroll-view scroll-y style="height: {{s_view_height}}px;" 
-class="read-record-container" wx:if="{{ !loading && !no_history }}">
+class="read-record-container" bindscrolltoupper="scrollToUpper" upper-threshold="-88"
+wx:if="{{ !loading }}">
   
+  <view class="loader-msg" wx:if="{{refreshing}}" >玩命刷新中...</view>
+
   <view class="read-record-box">
   
     <view wx:for="{{history}}" wx:key="unique" 
@@ -58,15 +61,15 @@ class="read-record-container" wx:if="{{ !loading && !no_history }}">
       <view class="record-title">{{item.title}}</view>
       <view class="record-score">{{item.score}}</view>
     </view>
-  
+
+    <!-- show if no history -->
+    <view class="loader-container" wx:if="{{ !loading && no_history }}">
+      <view class="no_history_msg">没有阅读记录哟</view>
+      <view class="no_history_msg">快去阅读吧!</view>
+    </view>
+
   </view>
 
   <!-- fill the full screen -->
   <view style="height: {{screen_fill_height}}px;"></view>
 </scroll-view>
-
-<!-- show if no history -->
-<view class="loader-container" wx:if="{{ !loading && no_history }}">
-  <view class="no_history_msg">没有阅读记录哟</view>
-  <view class="no_history_msg">快去阅读吧!</view>
-</view>
