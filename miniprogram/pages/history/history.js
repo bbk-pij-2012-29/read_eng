@@ -9,7 +9,7 @@ Page({
     month: app.utility.getCurrentYearMonth().month,
     history: [],
     no_history: false,
-    disable_nav_btn: false,
+    disable_nav_btn: true,
     s_view_height: 0,
     screen_fill_height: 0,
     refreshing: false
@@ -199,7 +199,7 @@ Page({
     if (isPullRefresh) {
       this.setData({
         no_history: false,
-        disable_nav_btn: false
+        disable_nav_btn: true
       })
 
       this.loadReadHistory()
@@ -210,7 +210,7 @@ Page({
         msg: '读取中',
 
         no_history: false,
-        disable_nav_btn: false
+        disable_nav_btn: true
       })
 
       // check if has got data
