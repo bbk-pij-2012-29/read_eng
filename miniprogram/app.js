@@ -89,15 +89,19 @@ App({
       },
 
       saveCachedData: function (local_collection_name, key, data) {
+        const storyageKey = local_collection_name + '_' + key
+
         wx.setStorage({
-          key: local_collection_name + '_' + key,
+          key: storyageKey,
           data: data
         })
       },
 
       removeCachedData: function (local_collection_name, key) {
+        const storyageKey = local_collection_name + '_' + key
+
         wx.removeStorage({
-          key: local_collection_name + '_' + key
+          key: storyageKey
         })
       },
 
@@ -318,7 +322,8 @@ App({
 
       expire_date: null,
       account_id: null,
-
+      
+      readHistLocalCacheList: []
       // network status check
       // lastNetworkStatus: true 
     }

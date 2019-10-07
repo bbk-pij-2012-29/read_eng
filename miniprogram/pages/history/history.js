@@ -135,7 +135,8 @@ Page({
       history: history,
       no_history: no_history,
       loading: false,
-      disable_nav_btn: false
+      disable_nav_btn: false,
+      refreshing: false
     })
 
     let that = this
@@ -194,24 +195,33 @@ Page({
     })
   },
 
-  updatePage: function () {
-    this.setData({
-      loading: true,
-      load_error: false,
-      msg: '读取中',
+  updatePage: function (isPullRefresh) {
+    if (isPullRefresh) {
+      this.setData({
+        no_history: false,
+        disable_nav_btn: false
+      })
 
-      no_history: false,
-      disable_nav_btn: false
-    })
-
-    // check if has got data
-    let check = this.getLocaReadHistorylData()
-
-    if (!check.has_data) {
       this.loadReadHistory()
     } else {
-      // push the read history
-      this.renderReadHistory(check.data)
+      this.setData({
+        loading: true,
+        load_error: false,
+        msg: '读取中',
+
+        no_history: false,
+        disable_nav_btn: false
+      })
+
+      // check if has got data
+      let check = this.getLocaReadHistorylData()
+
+      if (!check.has_data) {
+        this.loadReadHistory()
+      } else {
+        // push the read history
+        this.renderReadHistory(check.data)
+      }
     }
   },
 
@@ -239,6 +249,14 @@ Page({
   },
 
   scrollToUpper: function (e) {
-    console.log(e)
+    if (!this.data.refreshing) {
+      wx.vibrateShort()
+
+      this.setData({
+        refreshing: true
+      })
+
+      this.updatePage(true)
+    }
   }
 })
