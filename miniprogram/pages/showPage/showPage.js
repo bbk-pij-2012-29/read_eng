@@ -17,7 +17,7 @@ Page({
     this.setData({
       openid: options.who
     })
-
+    
   },
 
   /**

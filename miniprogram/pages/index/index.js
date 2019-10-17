@@ -82,7 +82,10 @@ Page({
   },
 
   onLoad: function() {
-    this.updatePage()
+    // this.updatePage()
+    wx.navigateTo({
+      url: '../showPage/showPage',
+    })
   },
 
   pickChange: function (e) {
