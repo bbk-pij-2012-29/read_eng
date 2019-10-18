@@ -6,6 +6,13 @@ Page({
     load_error: false,
     msg: '读取中',
 
+    numDays: 0,
+    numArticles: 0,
+    numWords: 0,
+    numQuestions: 0,
+    avgScores: 0,
+    refDate: '2019/01/01',
+
     openid: ''
   },
 
@@ -17,7 +24,7 @@ Page({
     this.setData({
       openid: options.who
     })
-    
+
   },
 
   /**
