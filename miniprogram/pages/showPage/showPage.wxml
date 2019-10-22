@@ -35,7 +35,7 @@
   <view class="loader-container no-top-margin">
     <view class="show-banner flex-col flex-abs-center">
       <view class="flex-row flex-abs-center menu-bottom-margin-l">
-        <image class="badge" src="../../images/showPageImages/trophy.png"></image>
+        <image class="badge" src="{{ badgeURL }}"></image>
       </view>
       
       <view class="show-text">Yunkan Qian</view>

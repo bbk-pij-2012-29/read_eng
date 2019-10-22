@@ -42,10 +42,18 @@ function getWeeklyStats (read_hist_data) {
     }
   }
 
+  let score = 0
+
+  if (read_hist_data.length > 0) {
+    const tot_score = read_hist_data.reduce((acc, curr) => acc.score + curr.score)
+    let score = Math.round(tot_score / read_hist_data.length)
+  }
+
   return {
     week_read_num: count_d,
     num_articles: read_hist_data.length,
-    articles: read_hist_data.map(x => x.article_id)
+    articles: read_hist_data.map(x => x.article_id),
+    avg_scores: score
   }
 }
 
@@ -70,7 +78,8 @@ exports.main = async (event, context) => {
   })
 
   // summarise the weekly days
-  const weeklyStats = getWeeklyStats(res.result.data)
+  const weeklyData = res.result.data
+  const weeklyStats = getWeeklyStats(weeklyData)
 
   // summrize the additional weekly stats
   const max_limit = 100
@@ -114,6 +123,8 @@ exports.main = async (event, context) => {
     numDays: weeklyStats.week_read_num, 
     numArticles: weeklyStats.num_articles, 
     numWords, 
-    numQuestions
+    numQuestions,
+    avgScores: weeklyStats.avg_scores,
+    weeklyData
   }
 }
