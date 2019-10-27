@@ -30,7 +30,7 @@ function getDateString (dt) {
 
 function getWeeklyStats (read_hist_data) {
   // mark stars
-  let last_d = 0
+  let last_d = -1
   let count_d = 0
 
   for (const dt of read_hist_data) {
@@ -43,10 +43,14 @@ function getWeeklyStats (read_hist_data) {
   }
 
   let score = 0
+  let tot_score = 0
 
   if (read_hist_data.length > 0) {
-    const tot_score = read_hist_data.reduce((acc, curr) => acc.score + curr.score)
-    let score = Math.round(tot_score / read_hist_data.length)
+    for (let i = 0; i < read_hist_data.length; i++) {
+      tot_score = tot_score + read_hist_data[i].score
+    }
+
+    score = Math.round(tot_score / read_hist_data.length)
   }
 
   return {
@@ -116,7 +120,7 @@ exports.main = async (event, context) => {
     _openid: openid
   }).get()
 
-  const userInfo = userRes.data
+  const userInfo = userRes.data[0]
 
   return {
     event, 
@@ -125,6 +129,8 @@ exports.main = async (event, context) => {
     numWords, 
     numQuestions,
     avgScores: weeklyStats.avg_scores,
-    weeklyData
+    weeklyData,
+    weeklyStats,
+    userInfo
   }
 }

@@ -5,7 +5,7 @@ Page({
     loading: true,
     load_error: false,
     msg: '读取中',
-
+    
     is_stats_loaded: false,
     is_weekly_loaded: false,
 
@@ -82,13 +82,19 @@ Page({
     default_week[td-1].cls_dt = 'today'
 
     // mark stars
-    let last_d = 0
+    let last_d = -1
     let count_d = 0
 
     for (const dt of read_hist_data) {
       let d = new Date(dt.date).getDay()
+      
       if (last_d !== d) {
-        default_week[d - 1].cls_star = 'star-active'
+        if (d === 0) {
+          default_week[default_week.length - 1].cls_star = 'star-active'
+        } else {
+          default_week[d - 1].cls_star = 'star-active'
+        }
+
         count_d = count_d + 1
         last_d = d
       }
@@ -131,7 +137,7 @@ Page({
         let read_hist_data = res.result.data
         
         let num_read_day = this.getNumReadDay(read_hist_data, dt.td_day)
-
+        
         this.setData({
           week_read_num: num_read_day.week_read_num,
           week: num_read_day.week,

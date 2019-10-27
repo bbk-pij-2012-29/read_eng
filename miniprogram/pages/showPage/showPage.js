@@ -13,7 +13,11 @@ Page({
     avgScores: 0,
     refDate: '2019/01/01',
     badgeURL: '',
-    openid: ''
+    award: '',
+    openid: '',
+    username: '',
+
+    section_margin: 'l'
   },
 
   updatePage: function() {
@@ -31,27 +35,33 @@ Page({
       success: res => {
         const showStats = res.result
         
+        let award = 'Lazy'
         let url = '../../images/showPageImages/lazy.png'
+        
+        if (showStats.numDays === 0) {
+          url = '../../images/showPageImages/lazy.png'
+          award = 'Lazy'
+        } else if (showStats.numDays === 1) {
+          url = '../../images/showPageImages/bronze.png'
+          award = 'Bronze'
+        } else if (showStats.numDays > 1 && showStats.numDays < 4) {
+          url = '../../images/showPageImages/silver.png'
+          award = 'Silver'
+        } else if (showStats.numDays === 4) {
+          url = '../../images/showPageImages/gold.png'
+          award = 'Gold'
+        } else if (showStats.numDays > 4) {
+          url = '../../images/showPageImages/trophy.png'
+          award = 'Trophy'
+        }
+        
+        const sysh = app.globalData.sys_info.screenHeight
+        const sysw = app.globalData.sys_info.screenWidth
+        
+        let section_margin = 'l'
 
-        switch (showStats.numDays) {
-          case 0:
-            url = '../../images/showPageImages/lazy.png'
-            break
-          case 1:
-            url = '../../images/showPageImages/bronze.png'
-            break
-          case 2:
-            url = '../../images/showPageImages/silver.png'
-            break
-          case 3:
-            url = '../../images/showPageImages/silver.png'
-            break
-          case 4:
-            url = '../../images/showPageImages/gold.png'
-            break
-          case 5, 6, 7:
-            url = '../../images/showPageImages/trophy.png'
-            break
+        if (sysh / sysw < 1.4) {
+          section_margin = 's'
         }
 
         this.setData({
@@ -63,7 +73,14 @@ Page({
           numQuestions: app.utility.getStatsNumString(showStats.numQuestions),
           avgScores: app.utility.getStatsNumString(showStats.avgScores),
 
-          badgeURL: url
+          username: showStats.userInfo.nickName,
+
+          badgeURL: url,
+          refDate: app.utility.getDateStringCh(new Date()),
+
+          award: award,
+
+          section_margin: section_margin
         })
       },
 

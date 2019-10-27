@@ -34,12 +34,13 @@
 <block wx:elif="{{ !loading }}">
   <view class="loader-container no-top-margin">
     <view class="show-banner flex-col flex-abs-center">
-      <view class="flex-row flex-abs-center menu-bottom-margin-l">
+      <view class="badge-text">{{ award }}</view>
+
+      <view class="flex-row flex-abs-center menu-bottom-margin-l menu-top-margin-l">
         <image class="badge" src="{{ badgeURL }}"></image>
       </view>
       
-      <view class="show-text">Yunkan Qian</view>
-      <view class="show-text">本周阅读 {{ numDays }} 天</view>
+      <view class="show-text">{{ username }}</view>
       <view class="show-text-sub">{{ refDate }}</view>
     </view>
 
@@ -47,6 +48,14 @@
     <view class="summary-stats-container" style="width: 616rpx;">
       <view class="summary-stats-card flex-col">
         <view class="summary-stats-box flex-row">
+        
+          <view class="stats-box">
+            <view class="align-center">
+              <image src="../../images/rocket.png" class="stats-image"></image>
+            </view>
+            <view class="stats">{{ numDays }}</view>
+            <view class="stats-title">天数</view>
+          </view>
 
           <view class="stats-box">
             <view class="align-center">
@@ -72,19 +81,11 @@
             <view class="stats-title">答题</view>
           </view>
 
-          <view class="stats-box">
-            <view class="align-center">
-              <image src="../../images/exam.png" class="stats-image"></image>
-            </view>
-            <view class="stats">{{ avgScores }}</view>
-            <view class="stats-title">得分</view>
-          </view>
-
         </view>
       </view>
     </view>
 
-    <view class="show-banner flex-row flex-abs-center menu-top-margin-l">
+    <view class="show-banner flex-row flex-abs-center menu-top-margin-{{ section_margin }}">
       <view class="flex-row flex-1 flex-abs-center">      
         <image 
         class="adv" 

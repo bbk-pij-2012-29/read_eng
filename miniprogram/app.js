@@ -5,6 +5,22 @@ App({
 
     // utility functions
     this.utility = {
+      getDateStringCh: function (dt) {
+        let y = dt.getFullYear()
+        let m = dt.getMonth() + 1
+        let d = dt.getDate()
+
+        if (m < 10) {
+          m = '0' + m
+        }
+
+        if (d < 10) {
+          d = '0' + d
+        }
+
+        return y + '/' + m + '/' + d
+      },
+
       getDateString: function (dt) {
         return dt.getFullYear() + '-'
           + dt.getMonth() + '-'
