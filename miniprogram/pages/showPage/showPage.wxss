@@ -19,6 +19,8 @@
   border-radius: 12rpx;
   padding: 6rpx 14rpx;
   color: #ff8246;
+  width: 128rpx;
+  text-align: center;
   /* font-weight: bold; */
 }
 
