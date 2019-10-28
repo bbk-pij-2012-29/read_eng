@@ -20,11 +20,13 @@ Page({
     section_margin: 'l'
   },
 
-  updatePage: function() {
+  updatePage: function(isPullDown) {
     // init updating display
-    this.setData({
-      loading: true
-    })
+    if (!isPullDown) {
+      this.setData({
+        loading: true
+      })
+    }
 
     // call the cloud function to update
     wx.cloud.callFunction({
@@ -82,6 +84,9 @@ Page({
 
           section_margin: section_margin
         })
+
+        // wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       },
 
       fail: err => {
@@ -89,8 +94,19 @@ Page({
           load_error: true,
           msg: '读取错误'
         })
+
+        // wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       }
     })
+  },
+
+  onPullDownRefresh() {
+    // wx.showNavigationBarLoading()
+    wx.vibrateShort()
+
+    // request for the reading stats
+    this.updatePage(true)
   },
 
   onLoad: function (options) {

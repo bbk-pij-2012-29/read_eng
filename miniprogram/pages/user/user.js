@@ -152,6 +152,9 @@ Page({
           load_error: true,
           msg: '读取错误'
         })
+
+        // wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -185,6 +188,9 @@ Page({
           load_error: true,
           msg: '读取错误'
         })
+
+        // wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       }
     })
   },
