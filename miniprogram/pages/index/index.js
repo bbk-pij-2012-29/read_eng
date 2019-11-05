@@ -82,6 +82,9 @@ Page({
   },
 
   onLoad: function() {
+    // wx.navigateTo({
+    //   url: '../friends/friends'
+    // })
     this.updatePage()
   },
 
