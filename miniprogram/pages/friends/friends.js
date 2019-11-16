@@ -22,6 +22,8 @@ Page({
   },
 
   deleteFriend: function (e) {
+    wx.vibrateShort()
+
     const friendid = e.currentTarget.dataset.id
     const friendName = this.data.friends.find(f => f._openid == friendid)
     const that = this
