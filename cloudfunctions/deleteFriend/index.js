@@ -31,6 +31,18 @@ exports.main = async (event, context) => {
     // do remove
     try {
       confirm = await db.collection('friends').doc(check.data[0]._id).remove()
+      
+      if (confirm.errMsg == 'document.remove:ok') {
+        confirm = {
+          status: 'ok',
+          error: ''
+        }
+      } else {
+        confirm = {
+          status: 'error',
+          error: 'database'
+        }
+      }
     } catch (e) {
       confirm = {
         status: 'error',

@@ -59,7 +59,7 @@ wx:if="{{ !loading }}">
     bindtap="goToArticle">
       <view class="record-day">{{item.day}}日</view>
       <view class="record-title">{{item.title}}</view>
-      <view class="record-score">{{item.score}}</view>
+      <view class="record-score">{{item.score}} 分</view>
     </view>
 
     <!-- show if no history -->

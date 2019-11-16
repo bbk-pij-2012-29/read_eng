@@ -62,7 +62,7 @@
 }
 
 .record-score {
-  width: 58rpx;
+  width: 108rpx;
   text-align: right;
   padding: 28rpx 58rpx 28rpx 28rpx;
   font-size: 28rpx;

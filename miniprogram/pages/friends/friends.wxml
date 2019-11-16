@@ -28,20 +28,21 @@
 <view class="friend-conainer">
   <view class="flex-1 flex-row">
     <view class="flex-2">
-      <input class="friend-code" auto-focus placeholder-class="friend-input-holder" 
-      text="text" placeholder="输入好友码" bindinput="handleInput"/>
+      <input class="friend-code" placeholder-class="friend-input-holder" 
+      text="text" placeholder="输入好友码" bindinput="handleInput" bindconfirm="addFriend" 
+      confirm-type="done" value="{{friend_code}}"/>
     </view>
   </view>
-
+  
   <view class="flex-1 flex-row menu-top-margin-m">
     <view class="flex-1">
-      <button class="friend-btn-add" 
+      <button class="friend-btn friend-btn-add" bindtap="addFriend" 
       hover-class="btn-hover">加好友</button>
     </view>
 
     <view class="flex-1">
-      <button class="friend-btn-code"
-      hover-class="btn-orange-light-hover">好友码</button>
+      <button class="friend-btn friend-btn-code" bindtap="genCode" 
+      hover-class="btn-hover">好友码</button>
     </view>
   </view>
 
@@ -56,22 +57,27 @@ wx:if="{{ !loading }}">
   <view class="loader-msg" wx:if="{{refreshing}}" >玩命刷新中...</view>
 
   <view class="friend-box">
-    
+
     <view class="friend flex-row" hover-class="friend-hover" 
-    wx:for="{{friends}}" wx:key="unique" data-id="{{item.friend_id}}"
-    bindtap="goToShowPage">
+    wx:for="{{friends}}" wx:key="unique" data-id="{{item._openid}}"
+    bindtap="goToShowPage" bindlongpress='deleteFriend'>
       <view class="friend-img-box">
-        <image src="{{item.url}}" class="friend-img"></image>
+        <image src="{{item.avatarUrl}}" class="friend-img"></image>
       </view>
-      <view class="flex-1">{{item.name}}</view>
+
+      <view class="flex-1">{{item.nickName}}</view>
+
+      <view>
+        <image src="../../images/menu-arrow.png" class="menu-btn-icon-small"></image>
+      </view>
     </view>
 
     <!-- show if no history -->
-    <view class="loader-container" wx:if="{{ !loading && no_history }}">
+    <view class="loader-container" wx:if="{{ !loading && no_friend }}">
       <view class="no_friend_msg">没有关联的好友哟</view>
       <view class="no_friend_msg">去添加好友吧!</view>
     </view>
-
+  
   </view>
 
   <!-- fill the full screen -->

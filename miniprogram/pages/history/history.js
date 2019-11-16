@@ -180,7 +180,7 @@ Page({
 
         let data = res.result.data
         this.saveLocaReadHistorylData(data)
-
+        
         // push the read history
         this.renderReadHistory(data)
       },
@@ -259,4 +259,5 @@ Page({
       this.updatePage(true)
     }
   }
+
 })

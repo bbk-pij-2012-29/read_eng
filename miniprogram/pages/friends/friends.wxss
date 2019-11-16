@@ -21,16 +21,19 @@ input{
 
 .friend-code {
   padding: 0 18rpx;
-  border: 1rpx solid #ff8246;
+  border: 4rpx solid #ff8246;
   border-radius: 8rpx;
 }
 
-.friend-btn-add {
+.friend-btn {
   background-color: #ff8246;
   color: white;
+  font-weight: bold;
+}
+
+.friend-btn-add {
   margin-left: 28rpx;
   margin-right: 8rpx;
-  font-weight: bold;
 }
 
 .friend-btn-code {
@@ -73,10 +76,10 @@ button {
 }
 
 .friend-img-box {
-  margin: 0 28rpx 0 48rpx;
+  margin: 0 48rpx 0 48rpx;
 }
 
 .friend-img {
-  width: 108rpx; 
-  height: 108rpx;
+  width: 88rpx; 
+  height: 88rpx;
 }
