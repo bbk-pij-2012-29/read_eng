@@ -141,7 +141,7 @@ App({
         let type = 'article'
 
         if (isAdv) {
-          let type = 'adv'
+          type = 'adv'
         }
 
         let expire_date = null
