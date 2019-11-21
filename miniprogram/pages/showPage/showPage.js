@@ -21,6 +21,12 @@ Page({
   },
 
   updatePage: function(isPullDown) {
+    // remove the error
+    this.setData({
+      msg: '读取中',
+      load_error: false
+    })
+
     // init updating display
     if (!isPullDown) {
       this.setData({
@@ -114,6 +120,10 @@ Page({
       openid: options.who
     })
 
+    this.updatePage()
+  },
+
+  reload: function () {
     this.updatePage()
   }
 })

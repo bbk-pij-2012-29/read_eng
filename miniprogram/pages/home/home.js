@@ -105,12 +105,12 @@ Page({
     let article_cache = app.utility.getCachedData("article", "article")
 
     if (featured_cache.has_data && article_cache.has_data) {
-      console.log('cache got')
+      // console.log('cache got')
       this.feedToFeatures(featured_cache.data.result.data)
       this.feedToArticle(article_cache.data.result.data, true)
       
     } else {
-      console.log('cache checked but no cache')
+      // console.log('cache checked but no cache')
       this.setData({
         loading: true
       })
@@ -120,13 +120,17 @@ Page({
     }
   },
 
+  reload: function() {
+    this.onLoad()
+  },
+
   onReachBottom: function() {   
-    console.log("reach bottom")
+    // console.log("reach bottom")
     
     if (!this.data.loading_more) {
       this.loadArticles(false)
     }  else {
-      console.log("loading in progress")
+      // console.log("loading in progress")
     }
   },
 
@@ -179,8 +183,8 @@ Page({
       list_featured: temp_list,
       is_fea_loaded: true
     })
-    console.log("swiper featured:", temp_swiper)
-    console.log("list featured:", temp_list)
+    // console.log("swiper featured:", temp_swiper)
+    // console.log("list featured:", temp_list)
   },
 
   feedToArticle: function (data_source, isReload) {
@@ -203,7 +207,7 @@ Page({
         is_art_loaded: true,
         loading_more: false,
       })
-      console.log("updated articles:", temp_ids)
+      // console.log("updated articles:", temp_ids)
 
       if (feed.length < this.data.num_per_load) {
         this.setData({

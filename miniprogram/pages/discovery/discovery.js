@@ -27,6 +27,7 @@ Page({
       has_more: true,
       loading: true,
       load_error: false,
+      msg: "读取中"
     })
 
     const current_int_name = this.data.interest_tags[this.data.current_interest].tag
@@ -35,16 +36,16 @@ Page({
     // check cache, if has cache feedToLists(), else renewFromCloud()
     // rule of naming key: current_int_name"_"current_cat_name
     let key = current_int_name.concat("_", current_cat_name)
-    console.log("combined key is:", key)
+    // console.log("combined key is:", key)
     let cache = app.utility.getCachedData("discovery", key)
 
     if (cache.has_data) {
-      console.log('cache got for', key)
+      // console.log('cache got for', key)
       this.feedToLists(cache.data)
     }
 
     else {
-      console.log("no cache got for current combination, will load from cloud")
+      // console.log("no cache got for current combination, will load from cloud")
       this.renewFromCloud(current_int_name, current_cat_name, key)
     }
   },
@@ -54,6 +55,7 @@ Page({
     this.setData({
       loading_more: true,
       load_error: false,
+      msg: "读取中"
     })
 
     const current_int_name = this.data.interest_tags[this.data.current_interest].tag
@@ -95,7 +97,7 @@ Page({
           let key = current_int_name.concat("_", current_cat_name)
           let cache = app.utility.getCachedData("discovery", key)
           let new_cache = cache.data.concat(res.result.data)
-          console.log("new cache is: ", new_cache)
+          // console.log("new cache is: ", new_cache)
           app.utility.saveCachedData('discovery', key, new_cache)
           
         } else {
@@ -107,7 +109,7 @@ Page({
       },
 
       fail: err => {
-        console.log("more article requested fail", err)
+        // console.log("more article requested fail", err)
         this.setData({
           loading_more: false,
           load_error: true,
@@ -160,6 +162,9 @@ Page({
     this.renewArticles()
   },
 
+  reload: function () {
+    this.renewArticles()
+  },
 
   switchIntTab: function (e) {
     // update index of interest clicked on this page
@@ -217,7 +222,7 @@ Page({
     if (this.data.has_more && !this.data.loading_more && !this.data.refreshing) {
       this.moreArticles()
     } else {
-      console.log("loading in progress / no more articles")
+      // console.log("loading in progress / no more articles")
     }
   },
 
@@ -254,10 +259,15 @@ Page({
         has_more: false
       })
     }
-    console.log(this.data.art_ids)
+    // console.log(this.data.art_ids)
   },
 
   renewFromCloud: function (interest, category, key) {
+    this.setData({
+      load_error: false,
+      msg: "读取中"
+    })
+
     wx.cloud.callFunction({
       name: "loadDiscoverList",
       data: {
@@ -277,7 +287,7 @@ Page({
       },
 
       fail: err => {
-        console.log("renew from cloud fails", err)
+        // console.log("renew from cloud fails", err)
         this.setData({
           refreshing: false,
           load_error: true,

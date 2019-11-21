@@ -242,6 +242,7 @@ Page({
     if (isPullRefresh) {
       // no whole loading and show refreshing message
       this.setData({
+        msg: '读取中',
         refreshing: true,
         loading: false,
         load_error: false
@@ -249,6 +250,7 @@ Page({
     } else {
       // no refreshing message and show whole loading
       this.setData({
+        msg: '读取中',
         refreshing: false,
         loading: true,
         load_error: false
