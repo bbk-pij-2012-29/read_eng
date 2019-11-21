@@ -11,7 +11,7 @@ const _ = db.command
 // 云函数入口函数
 // Params: {
 //   type: String [article, adv],
-//   id: Int
+//   article_id: Int
 // }
 // according to the article id and type to query and load the article
 exports.main = async (event, context) => {
@@ -24,11 +24,11 @@ exports.main = async (event, context) => {
   }
 
   const article = await db.collection(coll_name).where({
-    article_id: event.id
+    article_id: event.article_id
   }).get()
 
   const article_content = await db.collection(coll_content_name).where({
-    article_id: event.id
+    article_id: event.article_id
   }).get()
   
   const article_data = article.data[0]

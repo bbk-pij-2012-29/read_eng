@@ -276,5 +276,9 @@ Page({
 
   onLoad: function (options) {
     this.update()
+  },
+
+  reload: function () {
+    this.update()
   }
 })

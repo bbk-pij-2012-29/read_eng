@@ -78,7 +78,7 @@ Page({
     if (options.type === 'adv') {
       isAdv = true
     }
-    
+
     this.setData({
       type: options.type,
       id: parseInt(options.id),
