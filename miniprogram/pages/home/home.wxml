@@ -50,9 +50,10 @@
       <text>阅读技巧</text>
     </view>
     <scroll-view scroll-x class="scroll-view-x">
-      <view class="scroll-view-x-ads" wx:for="{{ads}}" wx:key="unique">
+      <view class="scroll-view-x-ads" wx:for="{{ads}}" 
+      wx:key="unique" data-id="{{item.ad_id}}" bindtap="goToAdPage">
         <view class="flex-row flex-abs-center ads-txt">
-          {{item}}
+          {{item.ad_name}}
         </view>
       </view>
     </scroll-view>

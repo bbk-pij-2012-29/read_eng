@@ -14,7 +14,12 @@ Page({
     art_ids: [], // ids of articles already rendered on page
     swiper_featured: [], // cleaned top featured articles
     list_featured: [], // cleaned second featured articles
-    ads: ["新手指南", "近期活动", "高效学习"],
+
+    ads: [
+      {ad_id: 1, ad_name: "新手指南"},
+      {ad_id: 2, ad_name: "近期活动"},
+      {ad_id: 3, ad_name: "高效学习"}
+    ],
     
     interest_tags: app.globalData.interest_tags,
     selected_interest_id: 0,
@@ -244,6 +249,10 @@ Page({
       load_error: false,
       msg: '读取中',
     })
+  },
+
+  goToAdPage: function (e) {
+    app.utility.goToArticle(app, e.currentTarget.dataset.id, true)
   }
 })
 

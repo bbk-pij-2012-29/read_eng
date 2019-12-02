@@ -34,7 +34,7 @@
   <view class="article-container">
     <view class="title">{{ title }}</view>
     <!-- <view class="article-info-bar">{{ source }} - {{ author }} (字数: {{ num_words }})</view> -->
-    <view class="article-info-bar" wx:if="{{ !isAdv }}">字数: {{ num_words }}</view>
+    <view class="article-info-bar">字数: {{ num_words }}</view>
     
     <image src="{{ cover_url }}" class="article-top-image" mode="aspectFill"></image>
 
