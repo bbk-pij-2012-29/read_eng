@@ -255,5 +255,3 @@ Page({
     app.utility.goToArticle(app, e.currentTarget.dataset.id, true)
   }
 })
-
-
